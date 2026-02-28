@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
-
+//Generar y validad JWT
 @Service
 public class JwtService {
     @Value("${jwt.secret}")
@@ -23,6 +23,7 @@ public class JwtService {
     @Value("${jwt.refreshExpiration}")
     private long refreshExpirationMs;
 
+    //Generar access token para usuario(incluye claims como email y roles)
     public String generateToken(User user) {
         return Jwts.builder()
                 .setSubject(user.getId().toString())
@@ -34,6 +35,7 @@ public class JwtService {
                 .compact();
     }
 
+    //Generar refresh token para un usuario
     public String generateRefreshToken(User user) {
         return Jwts.builder()
                 .setSubject(user.getId().toString())
@@ -43,6 +45,7 @@ public class JwtService {
                 .compact();
     }
 
+    //Validar token recibido en una peticion
     public Claims validateToken(String token) {
         return Jwts.parser()
                 .verifyWith(Keys.hmacShaKeyFor(secretKey.getBytes()))

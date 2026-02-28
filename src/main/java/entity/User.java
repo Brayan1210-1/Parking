@@ -1,6 +1,5 @@
 package entity;
 import java.time.LocalDateTime;
-import java.util.List;
 import enums.Rol;
 
 import jakarta.persistence.Column;
@@ -14,10 +13,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 //Lombok modo Dios
 @Getter
@@ -26,6 +22,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

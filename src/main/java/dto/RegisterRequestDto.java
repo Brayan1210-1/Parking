@@ -1,16 +1,17 @@
 package dto;
 
-import lombok.AllArgsConstructor;
+import enums.Rol;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
+//Registrar nuevo usuario
 @NoArgsConstructor
-public class RegistroRequestDto {
+@Data
+public class RegisterRequestDto {
     private String name;
     private String email;
     private String password;
     private String document;
     private String phone;
+    private Rol rol;
 }

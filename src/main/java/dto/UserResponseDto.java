@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+//Para devolver informacion de un usuario al cliente
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
