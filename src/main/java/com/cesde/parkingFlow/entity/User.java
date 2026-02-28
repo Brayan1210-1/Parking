@@ -1,6 +1,6 @@
-package entity;
+package com.cesde.parkingFlow.entity;
 import java.time.LocalDateTime;
-import enums.Rol;
+import com.cesde.parkingFlow.enums.Rol;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

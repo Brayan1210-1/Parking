@@ -1,6 +1,6 @@
-package repository;
+package com.cesde.parkingFlow.repository;
 
-import entity.User;
+import com.cesde.parkingFlow.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

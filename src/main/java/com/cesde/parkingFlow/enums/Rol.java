@@ -1,4 +1,4 @@
-package enums;
+package com.cesde.parkingFlow.enums;
 
 public enum Rol {
     ADMIN,

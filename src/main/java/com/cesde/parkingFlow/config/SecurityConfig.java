@@ -1,4 +1,4 @@
-package config;
+package com.cesde.parkingFlow.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import service.JwtAuthenticationFilter;
+import com.cesde.parkingFlow.service.JwtAuthenticationFilter;
 
 //Config de seguridad, define endpoints publicos y cuales requieren autenticacion
 @Configuration
@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .httpBasic(basic -> basic.disable())//Desactiva autenticacion basica
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/**").permitAll()//Permite acceso libre a endpoints de autenticacion
+                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()//Permite acceso libre a endpoints de autenticacion
                         .requestMatchers(HttpMethod.POST, "/api/v1/admin/**").hasRole("ADMIN")//Solo admin puede acceder a /admin/**
                         .requestMatchers(
                                 "/swagger/**",

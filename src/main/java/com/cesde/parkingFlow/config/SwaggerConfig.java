@@ -1,4 +1,4 @@
-package config;
+package com.cesde.parkingFlow.config;
 
 import java.util.List;
 

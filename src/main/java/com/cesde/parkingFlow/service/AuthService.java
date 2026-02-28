@@ -1,15 +1,15 @@
-package service;
+package com.cesde.parkingFlow.service;
 
-import dto.LoginRequestDto;
-import dto.RegisterRequestDto;
-import dto.TokenResponseDto;
-import entity.User;
-import enums.Rol;
+import com.cesde.parkingFlow.dto.LoginRequestDto;
+import com.cesde.parkingFlow.dto.RegisterRequestDto;
+import com.cesde.parkingFlow.dto.TokenResponseDto;
+import com.cesde.parkingFlow.entity.User;
+import com.cesde.parkingFlow.enums.Rol;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import repository.UserRepository;
+import com.cesde.parkingFlow.repository.UserRepository;
 
 //Servicio de autenticacion(Registro, login y refresh de tokens)
 @Service

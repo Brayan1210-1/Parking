@@ -1,6 +1,6 @@
-package dto;
+package com.cesde.parkingFlow.dto;
 
-import enums.Rol;
+import com.cesde.parkingFlow.enums.Rol;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

@@ -1,6 +1,6 @@
-package service;
+package com.cesde.parkingFlow.service;
 
-import entity.User;
+import com.cesde.parkingFlow.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -20,7 +20,7 @@ public class JwtService {
     @Value("${jwt.expiration}")
     private long expirationMs;
 
-    @Value("${jwt.refreshExpiration}")
+    @Value("${jwt.refresh-expiration}")
     private long refreshExpirationMs;
 
     //Generar access token para usuario(incluye claims como email y roles)
