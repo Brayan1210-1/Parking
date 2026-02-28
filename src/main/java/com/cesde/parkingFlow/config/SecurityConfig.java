@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 import com.cesde.parkingFlow.service.JwtAuthenticationFilter;
 
 //Config de seguridad, define endpoints publicos y cuales requieren autenticacion
@@ -33,15 +34,17 @@ public class SecurityConfig {
                 .httpBasic(basic -> basic.disable())//Desactiva autenticacion basica
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()//Permite acceso libre a endpoints de autenticacion
-                        .requestMatchers(HttpMethod.POST, "/api/v1/admin/**").hasRole("ADMIN")//Solo admin puede acceder a /admin/**
-                        .requestMatchers(
-                                "/swagger/**",
-                                "/swagger-ui/**",
-                                "/swagger-ui.html",
-                                "/v3/api-docs/**",
-                                "/docs/**").permitAll()//Swagger libre
-                        .anyRequest().authenticated())//Lo demas requiere autenticacion
+                .requestMatchers(HttpMethod.POST, "/api/v1/auth/**").permitAll()//Permite acceso libre a endpoints de autenticacion
+                .requestMatchers(HttpMethod.POST, "/api/v1/admin/**").hasRole("ADMIN")//Solo admin puede acceder a /admin/**
+                .requestMatchers(
+                        "/swagger",
+                        "/swagger/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/v3/api-docs/**",
+                        "/docs",
+                        "/docs/**").permitAll()//Swagger libre
+                .anyRequest().authenticated())//Lo demas requiere autenticacion
 
                 //Inserta filtro JWT antes del filtro de autenticacion por user/password
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
@@ -54,4 +57,3 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
-
