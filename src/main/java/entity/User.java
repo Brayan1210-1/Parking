@@ -38,12 +38,19 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false, unique = true)
+    private String document;
+
+    @Column(unique = true, nullable = false)
+    private String phone;
+
     @Column(nullable = false)
     private String name;
 
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
+    @Column(nullable = false)
     private boolean activo = true;
 
     @Column(nullable = false)
