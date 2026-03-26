@@ -44,6 +44,9 @@ public class User {
 
     @Column(nullable = false)
     private String name;
+    
+    @Column(nullable = false)
+    private String lastName;
 
     @Enumerated(EnumType.STRING)
     private Rol rol;

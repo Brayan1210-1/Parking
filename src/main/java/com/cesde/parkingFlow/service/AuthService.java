@@ -11,9 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.cesde.parkingFlow.repository.UserRepository;
 
-//Servicio de autenticacion(Registro, login y refresh de tokens)
+
 @Service
-@RequiredArgsConstructor//Inyeccion de dependencias
+@RequiredArgsConstructor
 public class AuthService {
     private final UserRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
@@ -28,6 +28,10 @@ public class AuthService {
         User user = User.builder()
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .document(request.getDocument())
+                .phone(request.getPhone())
+                .name(request.getName())
+                .lastName(request.getLastName())
                 .rol(Rol.ABONADO) // rol por defecto
                 .activo(true)
                 .build();
