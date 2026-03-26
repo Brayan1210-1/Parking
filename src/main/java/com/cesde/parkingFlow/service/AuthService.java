@@ -18,6 +18,7 @@ public class AuthService {
     private final UserRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final RefreshTokenService refreshTokenService;
 
     //Registra un nuevo usuario en el sistema
     public TokenResponseDto register(RegisterRequestDto request) {
@@ -46,27 +47,27 @@ public class AuthService {
 
     //Inicia sesion y devuelve tokens
     public TokenResponseDto login(LoginRequestDto request) {
-        User user = usuarioRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        User user = findByEmail(request.getEmail());
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new RuntimeException("Credenciales inválidas");
         }
 
+        String refreshToken = refreshTokenService.createRefreshToken(user);
+        
         return new TokenResponseDto(
                 jwtService.generateToken(user),
-                jwtService.generateRefreshToken(user)
+                refreshToken 
         );
     }
 
-    //Refresca el access token usando un refresh token valido
-    public TokenResponseDto refresh(String refreshToken) {
-        Claims claims = jwtService.validateToken(refreshToken);
-        Long userId = Long.parseLong(claims.getSubject());
-
-        User user = usuarioRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
-        return new TokenResponseDto(jwtService.generateToken(user), refreshToken);
+  
+    
+    public User findByEmail(String email) {
+    	User user = usuarioRepository.findByEmail(email).
+    			orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    	
+    	return user;
+    	
     }
 }
