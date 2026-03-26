@@ -24,6 +24,7 @@ import lombok.*;
 @Table(name = "users")
 @Builder
 public class User {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -48,7 +49,7 @@ public class User {
     private Rol rol;
 
     @Column(nullable = false)
-    private boolean activo = true;
+    private boolean activo;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
