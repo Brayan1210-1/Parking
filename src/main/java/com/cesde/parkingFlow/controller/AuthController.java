@@ -3,7 +3,8 @@ package com.cesde.parkingFlow.controller;
 import com.cesde.parkingFlow.dto.LoginRequestDto;
 import com.cesde.parkingFlow.dto.RefreshRequestDto;
 import com.cesde.parkingFlow.dto.RegisterRequestDto;
-import com.cesde.parkingFlow.dto.TokenResponseDto;
+import com.cesde.parkingFlow.dto.response.TokenResponseDto;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
