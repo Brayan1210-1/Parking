@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.cesde.parkingFlow.exception.custom.*;
 import com.cesde.parkingFlow.exception.ErrorResponse;
-import com.cesde.parkingFlow.exception.custom.Unauthorized;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -22,4 +22,29 @@ public class GlobalExceptionHandler {
 				);
 		return new ResponseEntity<ErrorResponse>(error, HttpStatus.UNAUTHORIZED);
 	}
+	
+	@ExceptionHandler(exception = RegistroInvalido.class)
+	public ResponseEntity<ErrorResponse> registroInvalido(RegistroInvalido ms){
+		ErrorResponse error = new ErrorResponse(
+				HttpStatus.BAD_REQUEST.value(),
+				ms.getMessage(),
+				LocalDateTime.now()
+				);
+		return new ResponseEntity<ErrorResponse>(error, HttpStatus.BAD_REQUEST);		
+	}
+	
+	@ExceptionHandler(exception = NotFound.class)
+	public ResponseEntity<ErrorResponse> notFound(NotFound ms){
+		ErrorResponse error = new ErrorResponse(
+				HttpStatus.NOT_FOUND.value(),
+				ms.getMessage(),
+				LocalDateTime.now()
+				);
+		return new ResponseEntity<ErrorResponse>(error, HttpStatus.NOT_FOUND);		
+	}
+	
+	
+	
+	
+	
 }
