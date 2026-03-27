@@ -11,6 +11,7 @@ import com.cesde.parkingFlow.dto.EstadoParqueaderoDTO;
 import com.cesde.parkingFlow.entity.ConfiguracionCapacidad;
 import com.cesde.parkingFlow.entity.Parqueadero;
 import com.cesde.parkingFlow.enums.TipoVehiculo;
+import com.cesde.parkingFlow.exception.custom.RegistroInvalido;
 import com.cesde.parkingFlow.repository.ConfiguracionCapacidadRepository;
 import com.cesde.parkingFlow.repository.ParqueaderoRepository;
 
@@ -36,7 +37,7 @@ public class CapacidadService {
 
         // No puede ser menor a los vehículos actualmente estacionados
         if (config.getOcupacionActual() != null && nuevaCapacidad < config.getOcupacionActual()) {
-            throw new RuntimeException("No se puede reducir la capacidad a " + nuevaCapacidad + 
+            throw new RegistroInvalido("No se puede reducir la capacidad a " + nuevaCapacidad + 
                 " porque hay " + config.getOcupacionActual() + " vehículos de tipo " + tipo + " adentro.");
         }
 
@@ -45,7 +46,7 @@ public class CapacidadService {
         if (asignadoOtros == null) asignadoOtros = 0;
 
         if ((asignadoOtros + nuevaCapacidad) > sede.getCapacidadFisicaTotal()) {
-            throw new RuntimeException("La suma de capacidades excede el límite físico de " + 
+            throw new RegistroInvalido("La suma de capacidades excede el límite físico de " + 
                 sede.getCapacidadFisicaTotal() + " celdas.");
         }
 

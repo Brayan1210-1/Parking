@@ -5,11 +5,13 @@ import com.cesde.parkingFlow.dto.RegisterRequestDto;
 import com.cesde.parkingFlow.dto.response.TokenResponseDto;
 import com.cesde.parkingFlow.entity.User;
 import com.cesde.parkingFlow.enums.Rol;
-import io.jsonwebtoken.Claims;
+import com.cesde.parkingFlow.exception.custom.*;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.cesde.parkingFlow.repository.UserRepository;
+
 
 
 @Service
@@ -23,7 +25,15 @@ public class AuthService {
     //Registra un nuevo usuario en el sistema
     public TokenResponseDto register(RegisterRequestDto request) {
         if (usuarioRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("Email ya registrado");
+            throw new RegistroInvalido("Email ya registrado");
+        }
+        
+        if (usuarioRepository.existsByDocument(request.getDocument())) {
+        	throw new RegistroInvalido("Documento ya registrado");
+        }
+        
+        if (usuarioRepository.existsByPhone(request.getPhone())) {
+        	throw new RegistroInvalido("Telefono ya registrado");
         }
 
         User user = User.builder()
@@ -50,7 +60,7 @@ public class AuthService {
         User user = findByEmail(request.getEmail());
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Credenciales inválidas");
+            throw new Unauthorized("Credenciales inválidas");
         }
 
         String refreshToken = refreshTokenService.createRefreshToken(user);
@@ -65,7 +75,7 @@ public class AuthService {
     
     public User findByEmail(String email) {
     	User user = usuarioRepository.findByEmail(email).
-    			orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    			orElseThrow(() -> new NotFound("Usuario no encontrado"));
     	
     	return user;
     	
