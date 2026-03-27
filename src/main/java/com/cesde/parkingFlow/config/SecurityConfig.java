@@ -64,6 +64,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/v1/auth/**").permitAll()
                         //Solo admin puede acceder a /admin/**
                         .requestMatchers(HttpMethod.POST, "/api/v1/admin/**").hasRole("ADMIN")
+                        
+                        .requestMatchers(HttpMethod.POST,"/api/v1/movimientos/**").hasRole("ADMIN")
                         //Lo demas requiere autenticacion
                         .anyRequest().authenticated()
                 )
