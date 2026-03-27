@@ -2,7 +2,7 @@ package com.cesde.parkingFlow.service;
 
 import com.cesde.parkingFlow.dto.LoginRequestDto;
 import com.cesde.parkingFlow.dto.RegisterRequestDto;
-import com.cesde.parkingFlow.dto.TokenResponseDto;
+import com.cesde.parkingFlow.dto.response.TokenResponseDto;
 import com.cesde.parkingFlow.entity.User;
 import com.cesde.parkingFlow.enums.Rol;
 import io.jsonwebtoken.Claims;

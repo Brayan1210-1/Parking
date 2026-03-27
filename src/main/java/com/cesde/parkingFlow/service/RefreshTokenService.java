@@ -5,8 +5,8 @@ import java.time.Instant;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.cesde.parkingFlow.exception.custom.Unauthorized; 
-import com.cesde.parkingFlow.dto.TokenResponseDto;
+import com.cesde.parkingFlow.exception.custom.Unauthorized;
+import com.cesde.parkingFlow.dto.response.TokenResponseDto;
 import com.cesde.parkingFlow.entity.RefreshToken;
 import com.cesde.parkingFlow.entity.User;
 import com.cesde.parkingFlow.repository.RefreshTokenRepository;
