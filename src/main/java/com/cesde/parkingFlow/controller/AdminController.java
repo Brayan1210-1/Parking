@@ -42,5 +42,6 @@ public class AdminController {
         return ResponseEntity.ok("Capacidad para " + request.getTipo() + 
                                 " actualizada exitosamente a " + request.getNuevaCapacidad());
     }
+    
 }
 
